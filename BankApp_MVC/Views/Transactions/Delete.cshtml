@@ -1,0 +1,64 @@
+﻿@model BankApp_MVC.Models.Transaction
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Transaction</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Account.Discriminator)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Account.Discriminator)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Loan.LoanID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Loan.LoanID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TransactionDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TransactionDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SignedCredit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SignedCredit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TransactionDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TransactionDesc)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

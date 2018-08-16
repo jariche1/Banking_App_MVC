@@ -1,0 +1,23 @@
+﻿.jumbotron {
+	background-image: url(img/WealthyPerson.jpg);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	opacity: 0.99;
+	padding-top: 200px;
+	padding-bottom: 200px;
+	filter: grayscale(40%);
+}
+
+.col-md-4 {
+	width: 250px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	text-align: center;
+	padding-bottom: 180px;
+	margin: 1px 0px 1px 0px;
+}
+
+body {
+	background-color: lightslategray;
+}
+

@@ -1,0 +1,49 @@
+﻿@model IEnumerable<BankApp_MVC.Models.Account>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Accounts</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-hover" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+    <tr>
+		<th>
+			@Html.DisplayNameFor(model => model.AccountID)
+		</th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Discriminator)
+        </th>
+        <th></th>
+    </tr>
+@{
+	//Get account ids that correspond with current logged in user
+	
+	foreach (var item in Model)
+	{
+	<!--Redirect to transaction page with list of transactions corresponding to this account-->
+	<tr onclick="location.href = '@(Url.Action("IndexById", "Transactions", new { aol_id = item.AccountID }))'">
+		<td>
+			@Html.DisplayFor(modelItem => item.AccountID)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.Amount)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.Discriminator)
+		</td>
+		<td>
+			@Html.ActionLink("Details", "Details", new { id = item.AccountID }) |
+			@Html.ActionLink("Delete", "Delete", new { id = item.AccountID })
+		</td>
+	</tr>
+	}
+}
+
+</table>

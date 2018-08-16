@@ -1,0 +1,48 @@
+﻿@model IEnumerable<BankApp_MVC.Models.Loan>
+
+@{
+	ViewBag.Title = "Index";
+}
+
+<h2>Loans</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-hover " style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+	<!--Redirect to transaction page with list of transactions corresponding to this loan-->
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Debt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InterestRate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </th>
+        <th></th>
+    </tr>
+@{
+	foreach (var item in Model)
+	{
+	<!--Redirect to transaction page with list of transactions corresponding to this loan-->
+	<tr onclick="location.href = '@(Url.Action("IndexById", "Transactions", new { aol_id = item.LoanID }))'">
+		<td>
+			@Html.DisplayFor(modelItem => item.Debt)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.InterestRate)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.DateCreated)
+		</td>
+		<td>
+			@Html.ActionLink("Details", "Details", new { id = item.LoanID }) |
+			@Html.ActionLink("Delete", "Delete", new { id = item.LoanID })
+		</td>
+	</tr>
+	}
+}
+
+</table>

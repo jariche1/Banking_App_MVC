@@ -1,0 +1,88 @@
+﻿@model IEnumerable<BankApp_MVC.Models.Transaction>
+
+@{
+	ViewBag.Title = "Index";
+}
+
+@{
+	if (Request.UrlReferrer.LocalPath == "/Accounts" || @ViewBag.actid != null)
+	{
+		if (ViewBag.IsNegative == true)
+		{
+			<h1>Balance: -$@ViewBag.AccountBalance</h1>
+		}
+		else
+		{
+			<h1>Balance: $@ViewBag.AccountBalance</h1>
+		}
+
+	}
+	else if (Request.UrlReferrer.LocalPath == "/Loans" || @ViewBag.loanid != null)
+	{
+		if (@ViewBag.LoanDebt == 0)
+		{
+			<h1>Debt: $@ViewBag.LoanDebt</h1>
+		}
+		else
+		{
+			<h1>Debt: -$@ViewBag.LoanDebt</h1>
+		}
+	}
+}
+
+<p>
+	@{if (Request.UrlReferrer.LocalPath == "/Accounts" || @ViewBag.actid != null)
+		{
+			@Html.ActionLink("Withdraw |", "Withdraw")
+			if (ViewBag.AccountType != "Term Deposit")
+			{
+				@Html.ActionLink("Deposit |", "Deposit")
+				@Html.ActionLink("Transfer To |", "TransferTo")
+				@*@Html.ActionLink("Get Info|", "GetInfo")*@
+			}
+
+			if (ViewBag.AccountType == "Business Account" && ViewBag.IsNegative == true)
+			{
+				<div class="pull-right">@Html.ActionLink("Pay Overdraft", "PayOverdraft")</div>
+			}
+		}
+		else if (Request.UrlReferrer.LocalPath == "/Loans" || @ViewBag.loanid != null)
+		{
+			@Html.ActionLink("Pay Installment", "PayInstallment") 
+		}
+	}  
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TransactionDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SignedCredit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TransactionDesc)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TransactionDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SignedCredit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TransactionDesc)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id=item.TransactionID }) 
+        </td>
+    </tr>
+}
+
+</table>

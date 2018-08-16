@@ -1,0 +1,58 @@
+﻿@model BankApp_MVC.Models.Transaction
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Transaction</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Account.Discriminator)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Account.Discriminator)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Loan.LoanID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Loan.LoanID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TransactionDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TransactionDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SignedCredit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SignedCredit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TransactionDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TransactionDesc)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TransactionID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
